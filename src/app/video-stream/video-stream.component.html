@@ -1,0 +1,12 @@
+<span class="make">
+  <mat-card class="meeting-video-card">
+    <video [class.in-call]="remoteStream" class="video" [srcObject]="localStream" autoplay playsinline></video>
+    <video *ngIf="remoteStream && false" class="video" [srcObject]="remoteStream" autoplay playsinline></video>
+    <div class="footer">
+      <button mat-raised-button mat-button color="primary" (click)="startCall()">Start call</button>
+    </div>
+  </mat-card>
+</span>
+
+<!-- <input mat-input mat-input type="text" [(ngModel)]="callId">
+<button mat-raised-button mat-button color="primary" (click)="joinCall()">Join call</button> -->

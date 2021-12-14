@@ -1,0 +1,31 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.make {
+    height: 100%;
+}
+
+.meeting-video-card {
+    height: 80%;
+    width: 80%;
+
+    video {
+        height: 90%;
+        width: 100%;
+        background-color: red;
+        object-fit: cover;
+    }
+
+    .footer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 10%;
+    }
+}
