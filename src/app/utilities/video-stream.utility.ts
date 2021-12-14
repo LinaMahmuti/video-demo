@@ -113,7 +113,7 @@ export class VideoStreamUtility {
 
     let res = await callDoc.get().toPromise();
 
-    const offerDesctiption = res.data() as RTCSessionDescriptionInit;
+    const offerDesctiption = (res.data()as any).offer as RTCSessionDescriptionInit;
     await this.rpcService.pc.setRemoteDescription(
       new RTCSessionDescription(offerDesctiption)
     );
@@ -131,7 +131,6 @@ export class VideoStreamUtility {
     offerCandidates.snapshotChanges().subscribe((snapshot) => {
       snapshot.forEach((item) => {
         if (item.type === 'added') {
-          debugger;
           const data = item.payload.doc.data();
           this.rpcService.pc.addIceCandidate(new RTCIceCandidate(data));
         }
@@ -151,7 +150,7 @@ export class VideoStreamUtility {
         res.map((item, index) => {
           const itemData: any = item.payload.doc.data();
 
-          if (!Object.keys(itemData).includes('offer') || !this.isHost) return;
+          if (!Object.keys(itemData).includes('offer')) return;
 
           if (
             !latestItem ||
@@ -162,9 +161,9 @@ export class VideoStreamUtility {
           }
         });
 
-        console.log('latest item', latestItem);
-        console.log('latest item id', latestItemId);
-        this.joinCall(latestItemId);
+        // console.log('latest item', latestItem);
+        // console.log('latest item id', latestItemId);
+        // this.joinCall(latestItemId);
       });
   }
 }
